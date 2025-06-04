@@ -4,38 +4,47 @@ const three = document.getElementById("three");
 const container = document.getElementById("container");
 
 
-
-function renderCountry (){
-  container.innerHTML = "";
-  
+function renderCountry() {
+  container.innerHTML = "loading...";
+  container.style.background = "green";
+  container.style.opacity = "0.5";
+  container.style.pointerEvents = "none";
+  console.log(container.style);
 
   fetch('https://restcountries.com/v3.1/all')
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+  container.innerHTML = "";
 
 
-  data.forEach(element => {
-    container.innerHTML += `
-    <div class="item">
-      <div class="imageBck">
-        <img src=${element.flags.png} alt="">
+      data.forEach(element => {
+        container.innerHTML += `
+      <div class="item">
+        <div class="imageBck">
+          <img src=${element.flags.png} alt="">
+        </div>
+        <div class="textBck">
+          <p>Name: ${element.name.common}</p>
+          <p>Population: ${element.population}</p>
+          <h3>Currency</h3>
+        </div>
       </div>
-      <div class="textBck">
-        <p>Name: ${element.name.common}</p>
-        <p>Population: ${element.population}</p>
-        <h3>Currency</h3>
-
-      </div>
-    </div>
-    `;
-  });
-
-        //   <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
-        // <p>${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
-
-})
+      `;
+      });
+    })
+    .finally(() => {
+      container.style.opacity = "1";
+      container.style.pointerEvents = "auto";
+      container.style.background = "white";
+      console.log(container.style);
+    });
 }
+
+
+//   <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
+// <p>${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
+
 
 // function searchName () {
 //   const searchBox = document.getElementById("searchBox");
@@ -53,7 +62,7 @@ function renderCountry (){
 
 // console.log(countryName);
 
-    
+
 
 //     const element = data[0]; 
 //     pTag.innerHTML = `
@@ -75,31 +84,31 @@ function renderCountry (){
 
 // searchBtn.addEventListener("click", searchName)
 
-  const searchBox = document.getElementById("searchBox");
-  const pTag = document.getElementById("pTag");
-
-  
+const searchBox = document.getElementById("searchBox");
+const pTag = document.getElementById("pTag");
 
 
 
 
 
-  
-  searchBox.addEventListener('input', () => {
-    let countryName = searchBox.value.trim()
-    console.log(countryName);
 
 
-  if(countryName.length > 1){
+
+searchBox.addEventListener('input', () => {
+  let countryName = searchBox.value.trim()
+  console.log(countryName);
+
+
+  if (countryName.length > 1) {
     fetch(`https://restcountries.com/v3.1/name/${countryName}`)
-    .then(res => res.json())
-    .then(data => {
-  
-  console.log(data);
-  container.innerHTML = "";
-  
-      data.forEach(element => {
-      container.innerHTML += `
+      .then(res => res.json())
+      .then(data => {
+
+        console.log(data);
+        container.innerHTML = "";
+
+        data.forEach(element => {
+          container.innerHTML += `
         <div class="item">
           <div class="imageBck">
             <img src=${element.flags.png} alt="">
@@ -112,17 +121,17 @@ function renderCountry (){
             <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
         </div>
       </div>`;
+        })
       })
-      })
-  } else if (countryName == ''){
+  } else if (countryName == '') {
     renderCountry()
   }
 
 
-    console.log('search working');
-    
+  console.log('search working');
 
-  })
+
+})
 
 
 
