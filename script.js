@@ -11,7 +11,7 @@ function renderCountry() {
   container.style.pointerEvents = "none";
   console.log(container.style);
 
-  fetch('https://restcountries.com/v3.1/all')
+  fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,currencies')
     .then(response => response.json())
     .then(data => {
       console.log(data);
