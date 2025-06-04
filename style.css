@@ -42,3 +42,18 @@
   display: grid;
   gap: 10px;
 }
+
+.search {
+  /* background-color: red; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 20px 0;
+  gap: 10px;
+
+  input {
+    height: 40px;
+    width: 50%;
+  }
+}
