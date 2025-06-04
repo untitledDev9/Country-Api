@@ -28,6 +28,8 @@ function renderCountry() {
           <p>Name: ${element.name.common}</p>
           <p>Population: ${element.population}</p>
           <h3>Currency</h3>
+            <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
+            <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
         </div>
       </div>
       `;
