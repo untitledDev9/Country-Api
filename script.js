@@ -103,7 +103,7 @@ const regionCards = document.getElementById("regionCards");
 
 
 region.addEventListener('change', () => {
-  regionCards.innerHTML = "";
+  container.innerHTML = "";
   let getRegion = region.value
   fetch(`https://restcountries.com/v3.1/region/${getRegion}`)
   .then(response => response.json())
@@ -116,7 +116,7 @@ region.addEventListener('change', () => {
       console.log(element);
       
 
-      regionCards.innerHTML += `
+      container.innerHTML += `
       
       <div class="item">
           <div class="imageBck">
