@@ -10,17 +10,19 @@ function renderCountry() {
   container.style.opacity = "0.5";
   container.style.pointerEvents = "none";
 
-  fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,currencies')
+  fetch('https://restcountries.com/v3.1/all')
     .then(response => response.json())
     .then(data => {
   container.innerHTML = "";
+  
 
 
       data.forEach(element => {
+        // console.log(element);
+        
         let aaa = element.currencies[Object.keys(element.currencies)[0]]
-        // let bbb = element.currencies[Object.keys(element.currencies)[0]]
 
-
+        console.log(element.region)
         
         if(aaa == undefined){
 
@@ -94,15 +96,51 @@ function renderCountry() {
 
 // searchBtn.addEventListener("click", searchName)
 
+
+const region = document.getElementById("region");
+const regionCards = document.getElementById("regionCards");
+
+
+
+region.addEventListener('change', () => {
+  regionCards.innerHTML = "";
+  let getRegion = region.value
+  fetch(`https://restcountries.com/v3.1/region/${getRegion}`)
+  .then(response => response.json())
+  .then(data => {
+    console.log('data has been changed to', getRegion);
+
+    regionCards.innerHTML = `<h1>THIS IS ${getRegion.toUpperCase()} COUNTRIES</h1>`;
+
+    data.forEach(element => {
+      console.log(element);
+      
+
+      regionCards.innerHTML += `
+      
+      <div class="item">
+          <div class="imageBck">
+            <img src=${element.flags.png} alt="">
+          </div>
+          <div class="textBck">
+            <p>Name: ${element.name.common}</p>
+            <p>Name: ${element.region}</p>
+            <p>Population: ${element.population}</p>
+            <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
+            <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
+        </div>
+      </div>
+      `
+    })
+  })
+})
+
+
+
+
+
 const searchBox = document.getElementById("searchBox");
 const pTag = document.getElementById("pTag");
-
-
-
-
-
-
-
 
 searchBox.addEventListener('input', () => {
   let countryName = searchBox.value.trim()
