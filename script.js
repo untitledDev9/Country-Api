@@ -9,12 +9,10 @@ function renderCountry() {
   container.style.background = "green";
   container.style.opacity = "0.5";
   container.style.pointerEvents = "none";
-  console.log(container.style);
 
   fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,currencies')
     .then(response => response.json())
     .then(data => {
-      console.log(data);
   container.innerHTML = "";
 
 
@@ -23,17 +21,12 @@ function renderCountry() {
         // let bbb = element.currencies[Object.keys(element.currencies)[0]]
 
 
-        console.log(aaa);
         
         if(aaa == undefined){
 
 
-          console.log("N/A");
           return aaa = 'N/A'
         }
-        // if (bbb == undefined){
-        //  console.log("N/A");
-        // }
         container.innerHTML += `
       <div class="item">
         <div class="imageBck">
@@ -54,7 +47,6 @@ function renderCountry() {
       container.style.opacity = "1";
       container.style.pointerEvents = "auto";
       container.style.background = "white";
-      console.log(container.style);
     });
 }
 
@@ -79,7 +71,6 @@ function renderCountry() {
 //   .then(res => res.json())
 //   .then(data => {
 
-// console.log(countryName);
 
 
 
@@ -115,7 +106,6 @@ const pTag = document.getElementById("pTag");
 
 searchBox.addEventListener('input', () => {
   let countryName = searchBox.value.trim()
-  console.log(countryName);
 
 
   if (countryName.length > 1) {
@@ -123,7 +113,6 @@ searchBox.addEventListener('input', () => {
       .then(res => res.json())
       .then(data => {
 
-        console.log(data);
         container.innerHTML = "";
 
         data.forEach(element => {
@@ -147,7 +136,6 @@ searchBox.addEventListener('input', () => {
   }
 
 
-  console.log('search working');
 
 
 })
