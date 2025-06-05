@@ -19,6 +19,21 @@ function renderCountry() {
 
 
       data.forEach(element => {
+        let aaa = element.currencies[Object.keys(element.currencies)[0]]
+        // let bbb = element.currencies[Object.keys(element.currencies)[0]]
+
+
+        console.log(aaa);
+        
+        if(aaa == undefined){
+
+
+          console.log("N/A");
+          return aaa = 'N/A'
+        }
+        // if (bbb == undefined){
+        //  console.log("N/A");
+        // }
         container.innerHTML += `
       <div class="item">
         <div class="imageBck">
@@ -28,8 +43,8 @@ function renderCountry() {
           <p>Name: ${element.name.common}</p>
           <p>Population: ${element.population}</p>
           <h3>Currency</h3>
-            <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
-            <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
+          <p>${aaa.name}</p>
+          <p>Symbol: ${aaa.symbol}</p> 
         </div>
       </div>
       `;
@@ -44,6 +59,8 @@ function renderCountry() {
 }
 
 
+//  <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
+//             <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
 //   <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
 // <p>${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
 
