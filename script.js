@@ -10,7 +10,7 @@ function renderCountry() {
   container.style.opacity = "0.5";
   container.style.pointerEvents = "none";
 
-  fetch('https://restcountries.com/v3.1/all')
+  fetch('https://restcountries.com/v3.1/all?fields=name,flags,population,currencies,region')
     .then(response => response.json())
     .then(data => {
   container.innerHTML = "";
@@ -124,7 +124,7 @@ region.addEventListener('change', () => {
           </div>
           <div class="textBck">
             <p>Name: ${element.name.common}</p>
-            <p>Name: ${element.region}</p>
+            <p>Region: ${element.region}</p>
             <p>Population: ${element.population}</p>
             <p>${element.currencies[Object.keys(element.currencies)[0]].name}</p>
             <p>Symbol: ${element.currencies[Object.keys(element.currencies)[0]].symbol}</p> 
